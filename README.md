@@ -4,16 +4,18 @@ This is a simple way to quickly get a working OpenStack setup for testing or pla
 
 It provides the basic components split in the following nodes:
 
-   * master: not much here, but it might be useful for additional services 
+   * master: not much here, but it might be useful for additional services
    * controller: openstack keystone, glance, nova
    * compute1: openstack nova-compute
 
 ## How
 
 ```shell
-apt-get install vagrant
+apt-get install git vagrant
 git clone git@github.com:rochaporto/openstack-vagrant
 cd openstack-vagrant
+git submodule init
+git submodule update
 ```
 
 Optionally, if you want to customize things:
