@@ -4,9 +4,9 @@ This is a simple way to quickly get a working OpenStack setup for testing or pla
 
 It provides the basic components split in the following nodes:
 
-   * puppet: the required modules and manifests for the setup
-   * controller: keystone, glance, nova
-   * compute1: nova-compute
+   * master: not much here, but it might be useful for additional services 
+   * controller: openstack keystone, glance, nova
+   * compute1: openstack nova-compute
 
 ## How
 
@@ -16,29 +16,20 @@ git clone git@github.com:rochaporto/openstack-vagrant
 cd openstack-vagrant
 ```
 
-Default is to use a precise64 box, but feel free to go for something different:
-```shell
-vagrant box add precise64 http://files.vagrantup.com/precise64.box
-```
-
-Optional, if you want to customize things:
+Optionally, if you want to customize things:
 ```shell
 vim Vagrantfile
 ```
 
 Otherwise business as usual:
 ```
-vagrant up puppet
+vagrant up master 
 vagrant up controller
 vagrant up compute1
 ```
 
 And to go into the machines:
 ```
-vagrant ssh puppet
+vagrant ssh controller 
 ```
-
-## TODO
-
-- [ ] get the nodes configured using puppet
 
