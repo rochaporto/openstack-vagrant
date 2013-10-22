@@ -16,7 +16,12 @@ git clone git@github.com:rochaporto/openstack-vagrant
 cd openstack-vagrant
 ```
 
-If you want to customize things:
+Default is to use a precise64 box, but feel free to go for something different:
+```shell
+vagrant box add precise64 http://files.vagrantup.com/precise64.box
+```
+
+Optional, if you want to customize things:
 ```shell
 vim Vagrantfile
 ```
