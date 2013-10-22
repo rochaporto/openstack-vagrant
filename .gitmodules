@@ -1,0 +1,9 @@
+[submodule "puppet/modules/puppet-glance"]
+	path = puppet/modules/puppet-glance
+	url = git@github.com:stackforge/puppet-glance
+[submodule "puppet/modules/glance"]
+	path = puppet/modules/glance
+	url = git@github.com:stackforge/puppet-glance
+[submodule "puppet/modules/openstack"]
+	path = puppet/modules/openstack
+	url = git@github.com:stackforge/puppet-openstack
