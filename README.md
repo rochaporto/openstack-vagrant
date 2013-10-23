@@ -35,3 +35,17 @@ And to go into the machines:
 vagrant ssh controller 
 ```
 
+## Puppeting
+
+When you're playing with puppet manifests, you can either:
+```
+vagrant provision controller
+```
+or else keep a shell and do puppet apply locally:
+```
+vagrant ssh controller
+puppet apply ...
+```
+
+The puppet stuff is kept under /tmp/vagrant-puppet, and these are the real files.
+
