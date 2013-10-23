@@ -4,9 +4,6 @@
 [submodule "puppet/modules/glance"]
 	path = puppet/modules/glance
 	url = git@github.com:stackforge/puppet-glance
-[submodule "puppet/modules/openstack"]
-	path = puppet/modules/openstack
-	url = git@github.com:stackforge/puppet-openstack
 [submodule "puppet/modules/mysql"]
 	path = puppet/modules/mysql
 	url = git@github.com:puppetlabs/puppetlabs-mysql
