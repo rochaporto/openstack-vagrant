@@ -20,7 +20,6 @@ class { "keystone":
 #
 # Glance setup and configuration
 #
-
 class { "glance::db::mysql":
 	password      => "${default_password}",
 	allowed_hosts => ["localhost", "%"],
