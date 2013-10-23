@@ -16,6 +16,10 @@ class { "keystone":
 	admin_token    => "${default_token}",
 	sql_connection => "mysql://keystone:${default_password}@localhost/keystone",
 }
+
+keystone_tenant { "services": ensure => present, enabled => "True", }
+
+keystone_role { "admin": ensure => present, }
 	
 #
 # Glance setup and configuration
@@ -39,6 +43,7 @@ class { "glance::registry":
 	sql_connection    => "mysql://glance:${default_password}@localhost/glance",
 }
 
+Keystone_tenant["services"] -> Keystone_role["admin"] -> Class["glance::keystone::auth"]
 class { "glance::keystone::auth":
 	password         => "${default_password}",
 	email            => "${default_email}",
