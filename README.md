@@ -2,7 +2,7 @@
 
 This is a simple way to quickly get a working OpenStack setup for testing or playing.
 
-It provides the basic components split in the following nodes:
+By default the following nodes are available:
 
    * master: not much here, but it might be useful for additional services
    * controller: openstack keystone, glance, nova
@@ -47,5 +47,5 @@ vagrant ssh controller
 puppet apply ...
 ```
 
-The puppet stuff is kept under /tmp/vagrant-puppet, and these are the real files.
+The puppet stuff is kept under /tmp/vagrant-puppet in each VM, and these are the real files.
 
