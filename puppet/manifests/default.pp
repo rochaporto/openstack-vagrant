@@ -12,6 +12,6 @@ exec { "apt-update": command => "/usr/bin/apt-get update", }
 Exec["apt-update"] -> Package <| |>
 
 $default_password = "123456"
-$default_email		= "ricardo@catalyst.net.nz"
+$default_email		= "admin@example.com"
 $default_token		= "e09884cfa5d10e938b02"
 
