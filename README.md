@@ -8,6 +8,8 @@ By default the following nodes are available:
    * controller: mysql, openstack keystone, glance
    * compute1: openstack nova-compute
 
+Each one having its own puppet configuration under puppet/manifests.
+
 ## How
 
 ```shell
@@ -18,7 +20,7 @@ git submodule init
 git submodule update
 ```
 
-Brings the github stackforge modules by default, customize as needed. Exception is mysql - openstack stuff still depends on puppetlabs mysql 0.x.
+Brings the latest github stackforge modules by default, customize as needed. Exception is mysql - openstack stuff still depends on puppetlabs mysql 0.x.
 
 If you want to customize the VM configuration:
 ```shell
@@ -46,7 +48,7 @@ vagrant provision controller
 or else keep a shell and do puppet apply locally:
 ```
 vagrant ssh controller
-puppet apply ...
+puppet apply --pluginsync --modulepath '/etc/puppet/modules:/tmp/vagrant-puppet/modules-0' controller.pp
 ```
 
 The puppet stuff is kept under /tmp/vagrant-puppet in each VM, and these are the real files.

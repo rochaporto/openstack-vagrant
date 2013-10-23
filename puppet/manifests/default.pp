@@ -8,10 +8,17 @@ file { "/etc/motd":
 	content => "Vagrant managed by puppet... it works!",
 }
 
-exec { "apt-update": command => "/usr/bin/apt-get update", }
-Exec["apt-update"] -> Package <| |>
-
 $default_password = "123456"
 $default_email		= "admin@example.com"
 $default_token		= "e09884cfa5d10e938b02"
+$default_region		= "1.example.com"
+
+class { "apt": }
+
+apt::source { "cloudarchive-havana":
+	location					=> "http://ubuntu-cloud.archive.canonical.com/ubuntu",
+	release						=> "precise-updates/havana",
+	repos							=> "main",
+	required_packages	=> "ubuntu-cloud-keyring",
+}
 
