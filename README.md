@@ -5,7 +5,7 @@ This is a simple way to quickly get a working OpenStack setup for testing or pla
 By default the following nodes are available:
 
    * master: not much here, but it might be useful for additional services
-   * controller: openstack keystone, glance, nova
+   * controller: mysql, openstack keystone, glance
    * compute1: openstack nova-compute
 
 ## How
@@ -18,7 +18,9 @@ git submodule init
 git submodule update
 ```
 
-Optionally, if you want to customize things:
+Brings the github stackforge modules by default, customize as needed. Exception is mysql - openstack stuff still depends on puppetlabs mysql 0.x.
+
+If you want to customize the VM configuration:
 ```shell
 vim Vagrantfile
 ```
