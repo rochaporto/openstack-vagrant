@@ -16,6 +16,9 @@ Vagrant.configure("2") do |config|
 	# Common configuration to all machines
 	config.vm.box = "#{BOX}"
 	config.vm.box_url = "#{BOXURL}"
+	config.vm.provider "virtualbox" do |vb|
+		vb.customize ["modifyvm", :id, "--memory", "384"]
+	end
 
 	# Our master machine
 	config.vm.define "master" do |vmconfig|
@@ -43,7 +46,6 @@ Vagrant.configure("2") do |config|
 	config.vm.define "compute1" do |vmconfig|
 		vmconfig.vm.network :private_network, ip: "#{SUBNET}.103"
 		vmconfig.vm.hostname = "compute1.#{DOMAIN}"
-		vmconfig.vm.customize ["modifyvm", :id, "--memory", 384]
 
 		vmconfig.vm.provision :puppet, :options => ["--pluginsync"], :module_path => "puppet/modules" do |puppet|
 			puppet.manifests_path = "puppet/manifests"
@@ -51,4 +53,25 @@ Vagrant.configure("2") do |config|
 		end
 	end
 
+	# Ceph mon node
+	config.vm.define "ceph" do |vmconfig|
+		vmconfig.vm.network :private_network, ip: "#{SUBNET}.104"
+		vmconfig.vm.hostname = "ceph.#{DOMAIN}"
+
+		vmconfig.vm.provision :puppet, :options => ["--pluginsync"], :module_path => "puppet/modules" do |puppet|
+			puppet.manifests_path = "puppet/manifests"
+			puppet.manifest_file = "ceph.pp"
+		end
+	end
+		
+	# Ceph OSD node
+	config.vm.define "ceph-osd1" do |vmconfig|
+		vmconfig.vm.network :private_network, ip: "#{SUBNET}.105"
+		vmconfig.vm.hostname = "ceph-osd1.#{DOMAIN}"
+
+		vmconfig.vm.provision :puppet, :options => ["--pluginsync"], :module_path => "puppet/modules" do |puppet|
+			puppet.manifests_path = "puppet/manifests"
+			puppet.manifest_file = "ceph-osd1.pp"
+		end
+	end
 end
