@@ -27,6 +27,13 @@ If you want to customize the VM configuration:
 vim Vagrantfile
 ```
 
+If you want to use the LXC provider instead:
+```
+vagrant plugin install lxc
+vagrant box add precise64 http://bit.ly/vagrant-lxc-precise64-2013-10-23
+export VAGRANT_DEFAULT_PROVIDER=lxc
+```
+
 Otherwise business as usual:
 ```
 vagrant up master 
