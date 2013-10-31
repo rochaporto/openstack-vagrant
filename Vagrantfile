@@ -19,6 +19,9 @@ Vagrant.configure("2") do |config|
 	config.vm.provider "virtualbox" do |vb|
 		vb.customize ["modifyvm", :id, "--memory", "384"]
 	end
+	config.vm.provider "lxc" do |lxc|
+		lxc.customize "cgroup.memory.limit_in_bytes", "384M"
+	end
 
 	# Our master machine
 	config.vm.define "master" do |vmconfig|
