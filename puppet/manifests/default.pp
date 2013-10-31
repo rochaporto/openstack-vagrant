@@ -8,6 +8,9 @@ $default_password = "123456"
 $default_email    = "admin@example.com"
 $default_token    = "e09884cfa5d10e938b02"
 $default_region   = "1.example.com"
+$ceph_mon_host    = "ceph-mon0"
+$ceph_mon_addr    = "192.168.252.10:6789"
+$ceph_keyring     = "AQD0kHBSuKAkIxAAmSXjos3kI9nb5tBpOQZuyg=="
 
 host { "master.example.com": ip => "192.168.0.101", host_aliases => "master" }
 host { "controller.example.com": ip => "192.168.0.102", host_aliases => "controller" }
@@ -24,4 +27,3 @@ apt::source { "cloudarchive-havana":
 	release           => "precise-updates/havana",
 	#required_packages => "ubuntu-cloud-keyring",
 }
-
