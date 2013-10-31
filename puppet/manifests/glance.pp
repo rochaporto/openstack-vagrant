@@ -59,8 +59,8 @@ auth service required = cephx
 auth client required = cephx
 
 [mon.0]
-  host = <%= ceph_mon_host %> 
-  mon addr = <%= ceph_mon_addr %>
+  host = <%= @ceph_mon_host %> 
+  mon addr = <%= @ceph_mon_addr %>
 "),
 }
 file { "/etc/ceph/keyring":
@@ -71,7 +71,7 @@ file { "/etc/ceph/keyring":
 	content  =>
 inline_template("
 [client.images]
-key = <%= ceph_keyring %>
+key = <%= @ceph_keyring %>
 "),
 }
 # ceph auth get-or-create client.images mon 'allow r' osd 'allow class-read object_prefix rbd_children, allow rwx pool=images'
