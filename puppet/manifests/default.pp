@@ -12,18 +12,14 @@ $ceph_mon_host    = "ceph-mon0"
 $ceph_mon_addr    = "192.168.252.10:6789"
 $ceph_keyring     = "AQD0kHBSuKAkIxAAmSXjos3kI9nb5tBpOQZuyg=="
 
-host { "master.example.com": ip => "192.168.0.101", host_aliases => "master" }
-host { "controller.example.com": ip => "192.168.0.102", host_aliases => "controller" }
-host { "compute1.example.com": ip => "192.168.0.103", host_aliases => "compute1" }
-
 # TODO: Should be able to simply require_packages = "ubuntu-cloud-keyring",
 # but something's broken in the box image and need to apt-get update first
-Apt::Source["cloudarchive-havana"] -> Exec["apt-update"] -> Package<| |>
-exec { "apt-update": 
-  command => "/usr/bin/apt-get clean; /usr/bin/apt-get update; /usr/bin/apt-get install ubuntu-cloud-keyring; /usr/bin/apt-get clean; /usr/bin/apt-get update", }
-apt::source { "cloudarchive-havana":
-	location          => "http://ubuntu-cloud.archive.canonical.com/ubuntu",
-	repos             => "main",
-	release           => "precise-updates/havana",
-	#required_packages => "ubuntu-cloud-keyring",
-}
+#Apt::Source["cloudarchive-havana"] -> Exec["apt-update"] -> Package<| |>
+#exec { "apt-update": 
+#  command => "/usr/bin/apt-get clean; /usr/bin/apt-get update; /usr/bin/apt-get install ubuntu-cloud-keyring; /usr/bin/apt-get clean; /usr/bin/apt-get update", }
+#apt::source { "cloudarchive-havana":
+#	location          => "http://ubuntu-cloud.archive.canonical.com/ubuntu",
+#	repos             => "main",
+#	release           => "precise-updates/havana",
+#	#required_packages => "ubuntu-cloud-keyring",
+#}
