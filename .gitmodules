@@ -25,3 +25,6 @@
 [submodule "puppet/modules/puppetdb"]
 	path = puppet/modules/puppetdb
 	url = git@github.com:puppetlabs/puppetlabs-puppetdb
+[submodule "puppet/modules/concat"]
+	path = puppet/modules/concat
+	url = git@github.com:puppetlabs/puppetlabs-concat

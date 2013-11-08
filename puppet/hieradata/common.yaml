@@ -1,0 +1,2 @@
+puppetdb::ssl_listen_address: "0.0.0.0"
+puppetdb::host: "puppet.example.com"

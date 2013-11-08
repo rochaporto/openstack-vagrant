@@ -12,18 +12,23 @@ Vagrant.configure("2") do |config|
 		lxc.customize "cgroup.memory.limit_in_bytes", "384M"
 	end
 
-	# Puppet master machine (directly applies puppet to launch the master)
-	config.vm.define "puppet", primary: true do |puppet|
-		puppet.vm.hostname = "puppet.example.com"
-		puppet.vm.network "private_network", ip: "10.0.3.100"
-		puppet.vm.provider :lxc do |lxc|
+	# Config machine (runs the puppet master, puppetdb, keystone, etc)
+	config.vm.define "config", primary: true do |config|
+		config.vm.hostname = "config.example.com"
+		config.vm.network "private_network", ip: "10.0.3.100"
+		config.vm.provider :lxc do |lxc|
 			lxc.customize "network.ipv4", "10.0.3.100/24"
 		end
-		puppet.vm.provision "puppet" do |puppet|
+		config.vm.provision "puppet" do |puppet|
 			puppet.manifests_path = "puppet/manifests"
-			puppet.module_path = "../openstack-puppet-catalyst/modules"
-			puppet.manifest_file = "master.pp"
-			puppet.options = ["--pluginsync"]
+			puppet.module_path = "puppet/modules"
+			puppet.manifest_file = "config.pp"
+			puppet.options = [
+        "--pluginsync", 
+        "--hiera_config /vagrant/puppet/config/hiera.yaml",
+        "--modulepath /vagrant/puppet/modules",
+        "--manifestdir /vagrant/puppet/manifests",
+      ]
 		end
 	end
 
